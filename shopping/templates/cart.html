@@ -1,0 +1,93 @@
+{%extends 'base.html' %}
+{%load static%}
+{%block body%}
+
+<!-- main wrapper -->
+<div class="main-wrapper">
+
+<!-- breadcrumb -->
+<nav class="bg-gray py-3">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Cart</li>
+    </ol>
+  </div>
+</nav>
+<!-- /breadcrumb -->
+
+<div class="section">
+  <div class="cart shopping">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 mx-auto">
+          <div class="block">
+            <div class="product-list">
+
+                <div class="table-responsive">
+                  <table class="table cart-table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Sub Total</th>
+                        <th>Order</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {%for i in my%}
+                      <tr>
+                        <td>
+                          <a class="product-remove" href="{% url 'remove' i.id%}">&times;</a>
+                        </td>
+                        <td>
+                          <div class="product-info">
+                            <img  class="img-fluid" src="{{i.pro.img1.url}}" alt="product-img" length="100px" width="100px"/>
+                            <a href="{% url 'prod' i.pro.id%}">{{i.pro.name}}</a>
+                          </div>
+                        </td>
+                        <td>&#8377;{{i.pro.price}}</td>
+                        <td>{{i.quantity}}</td>
+                        <td>&#8377;{{i.totalprice}}</td>
+                        {%if i.totalprice < 10000   and i.totalprice > 0  %}
+                        <td><a href="{% url 'ship' i.id%}"> <button class="btn btn-primary float-centre">Order</button></a></td>
+                        {%endif%}
+                      </tr>
+                    {%endfor%}
+
+
+
+                    </tbody>
+                  </table>
+                </div>
+                <hr>
+                <div class="d-flex flex-column flex-md-row align-items-center text-red mb-2">
+                  <p style="color:red;"> *Amount Should be less than 10,000 </p>
+
+                </div>
+                <hr>
+                {%if total < 10000   and total > 0  %}
+                <div class="row">
+                  <div class="col-12">
+                    <ul class="list-unstyled text-right">
+                      <li>Grand Total <span class="d-inline-block w-100px">&#8377;{{total}}</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <hr>
+                <a href="{% url 'ship' 'All' %}" class="btn btn-primary float-right">Checkout</a>
+
+                {%endif%}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{%endblock%}

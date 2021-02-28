@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- main wrapper -->
+<div class="main-wrapper">
+
+<!-- breadcrumb -->
+<nav class="bg-gray py-3">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Add Category</li>
+    </ol>
+  </div>
+</nav>
+<!-- /breadcrumb -->
+
+<!-- shipping method -->
+<section class="section">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="inner-wrapper border-box">
+                    <!-- navbar -->
+
+                    <!-- /navbar -->
+
+                    <!-- shipping-address -->
+                    <h3 class="mb-5 border-bottom pb-2"> Product</h3>
+                    <form action="" class="row" method="post">
+                      {% csrf_token %}
+                         <div class="col-sm-6">
+                            <label for="firstName">Category Name</label>
+                            {{form.name}}
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" value="Add Category">
+                    </form>
+{%endblock%}

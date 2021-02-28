@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation mail</title>
+</head>
+<body>
+<h1>Thank you! for your Payment</h1>
+<H2>{{name}}</H2>
+<h3>Order Details</h3>
+{% for i in product_detail%}
+Product Detail:{{i.pro.name}}--{{i.total_amount}}
+{%endfor%}
+<h2>Grand Total:{{totalprice}}</h2>
+</body>
+</html>

@@ -1,0 +1,232 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block body%}
+<!-- main wrapper -->
+<div class="main-wrapper">
+
+<section class="section bg-gray hero-area">
+  <div class="container">
+    <div class="hero-slider">
+      {%for i in fg%}
+      <!-- Start first slide  -->
+      <div class="slider-item">
+        <div class="row">
+          <div class="col-lg-6 align-self-center text-center text-md-left mb-4 mb-lg-0">
+            <h3 data-duration-in=".5" data-animation-in="fadeInLeft" data-delay-in="0" data-animation-out="fadeOutLeft" data-delay-out="5" data-duration-out=".3">{{i.name}}</h3>
+            <!-- Start Title -->
+            <h1 data-duration-in=".5" data-animation-in="fadeInLeft" data-delay-in=".2" data-animation-out="fadeOutLeft" data-delay-out="5" data-duration-out=".3">&#8377;{{i.price}}</h1>
+            <!-- end title -->
+            <!-- Start Subtitle -->
+
+            <!-- end description -->
+            <!-- Start button -->
+            <a href="{% url 'prod' i.id%}" class="btn btn-primary" data-duration-in=".5" data-animation-in="fadeInLeft" data-delay-in=".8" data-animation-out="fadeOutLeft" data-delay-out="5" data-duration-out=".3">shop now</a>
+            <!-- end button -->
+          </div>
+          <!-- Start slide image -->
+          <div class="col-lg-6 text-center text-md-left">
+            <!-- background letter -->
+            <div class="bg-letter">
+              <span data-duration-in=".5" data-animation-in="fadeInRight" data-delay-in="1.2" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-out=".3">
+
+              </span>
+              <!-- Slide image -->
+              <img length="200px" width="200px" class="img-fluid d-unset" src="{{i.img1.url}}" alt="converse" data-duration-in=".5" data-animation-in="fadeInRight" data-delay-in="1" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-out=".3">
+            </div>
+          </div>
+          <!-- end slide image  -->
+        </div>
+      </div> <!-- end slider item -->
+{%endfor%}
+
+      <!-- Start slide  -->
+
+      <!-- end slide  -->
+
+    </div>
+  </div>
+</section>
+<!-- /hero area
+
+<!-- categories -->
+<!-- /categories -->
+
+<section class="section overlay cta" data-background="{% static 'images/backgrounds/cta.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="text-white mb-2">End of Season Sale</h1>
+                {%for i in cat%}
+        <a href="{% url 'meg' i.id%}" class="btn btn-light">shop now</a>
+        {%endfor%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="quickView" class="quickview">
+  <div class="row w-100">
+    <div class="col-lg-6 col-md-6 mb-5 mb-md-0 pl-5 pt-4 pt-lg-0 pl-lg-0">
+      <img src="{% static 'images/feature/product.png' %}" alt="product-img" class="img-fluid">
+    </div>
+    <div class="col-lg-5 col-md-6 text-center text-md-left align-self-center pl-5">
+      <h3 class="mb-lg-2 mb-2">Woven Crop Cami</h3>
+      <span class="mb-lg-4 mb-3 h5">$90.00</span>
+      <p class="mb-lg-4 mb-3 text-gray">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. sed ut perspic atis unde omnis iste natus</p>
+      <form action="#">
+        <select class="form-control w-100 mb-2" name="color">
+          <option value="brown">Brown Color</option>
+          <option value="gray">Gray Color</option>
+          <option value="black">Black Color</option>
+        </select>
+        <select class="form-control w-100 mb-3" name="size">
+          <option value="small">Small Size</option>
+          <option value="medium">Medium Size</option>
+          <option value="large">Large Size</option>
+        </select>
+        <button class="btn btn-primary w-100 mb-lg-4 mb-3">add to cart</button>
+      </form>
+      <ul class="list-inline social-icon-alt">
+        <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
+        <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
+        <li class="list-inline-item"><a href="#"><i class="ti-vimeo-alt"></i></a></li>
+        <li class="list-inline-item"><a href="#"><i class="ti-google"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- collection -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title">Top Collections</h2>
+      </div>
+      <div class="col-12">
+        <div class="collection-slider">
+            {%for i in data%}
+            <!-- product -->
+            <div class="col-lg-4 col-sm-6">
+                <div class="product text-center">
+                  <div class="product-thumb">
+                    <div class="overflow-hidden position-relative">
+                      <a href="{% url 'prod' i.id %}">
+                        <img width="10px" length='10px' class="img-fluid w-100 mb-3 img-first" src="{{i.img1.url}}" alt="product-img">
+                        <img width="10px" length='10px' class="img-fluid w-100 mb-3 img-second" src="{{i.img2.url}}" alt="product-img">
+                      </a>
+
+                    </div>
+                    <div class="product-hover-overlay">
+                      <a href="#" class="product-icon favorite" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
+                          class="ti-heart"></i></a>
+                      <a href="#" class="product-icon cart" data-toggle="tooltip" data-placement="left" title="Compare"><i
+                          class="ti-direction-alt"></i></a>
+                      <a data-vbtype="inline" href="#quickView" class="product-icon view venobox" data-toggle="tooltip"
+                        data-placement="left" title="Quick View"><i class="ti-search"></i></a>
+                    </div>
+                  </div>
+                  <div class="product-info">
+                    <h3 class="h5"><a class="text-color" href="product-single.html">{{i.name}}</a></h3>
+                    <span class="h5">&#8377;{{i.price}}</span>
+                  </div>
+                </div>
+              </div>
+          {%endfor%}
+              <!-- //end of product -->
+            <!-- product -->
+
+              <!-- //end of product -->
+            <!-- product -->
+
+              <!-- //end of product -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /collection -->
+
+<!-- deal -->
+<section class="section bg-cover" data-background="{% static 'images/backgrounds/deal.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
+        <h1>Deal of the day</h1>
+        <!-- syo-timer -->
+          {% for i in new%}
+        <div class="syotimer large">
+          <div id="simple-timer" data-year="2019" data-month="12" data-day="1" data-hour="1"></div>
+        </div>
+        <a href="{% url 'prod' i.id%}" class="btn btn-primary">shop now</a>
+      </div>
+      <div class="col-md-6 text-center text-md-left align-self-center">
+
+        <img width="100px" height="100px" src="{{i.img1.url}}" alt="product-img" class="img-fluid up-down">
+          {%endfor%}
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /deal -->
+
+<!-- instagram -->
+
+<!-- /instagram -->
+
+<!-- service -->
+<section class="section-sm border-top">
+  <div class="container">
+    <div class="row">
+      <!-- service item -->
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="d-flex flex-sm-row flex-column align-items-center align-items-sm-start">
+          <i class="ti-truck icon-lg mr-4 mb-3 mb-sm-0"></i>
+          <div class="text-center text-sm-left">
+            <h4>Free Shipping</h4>
+            <p class="mb-0 text-gray">Free shipping on oder over &#8377;500</p>
+          </div>
+        </div>
+      </div>
+      <!-- service item -->
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="d-flex flex-sm-row flex-column align-items-center align-items-sm-start">
+          <i class="ti-shield icon-lg mr-4 mb-3 mb-sm-0"></i>
+          <div class="text-center text-sm-left">
+            <h4>Secure Payment</h4>
+            <p class="mb-0 text-gray">We ensure secure payment with PEV</p>
+          </div>
+        </div>
+      </div>
+      <!-- service item -->
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="d-flex flex-sm-row flex-column align-items-center align-items-sm-start">
+          <i class="ti-timer icon-lg mr-4 mb-3 mb-sm-0"></i>
+          <div class="text-center text-sm-left">
+            <h4>Support 24/7</h4>
+            <p class="mb-0 text-gray">Contact us 24 hours a day, 7 days a week</p>
+          </div>
+        </div>
+      </div>
+      <!-- service item -->
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="d-flex flex-sm-row flex-column align-items-center align-items-sm-start">
+          <i class="ti-reload icon-lg mr-4 mb-3 mb-sm-0"></i>
+          <div class="text-center text-sm-left">
+            <h4>30 Days Return</h4>
+            <p class="mb-0 text-gray">Simply return it within 30 days for an exchange.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /service -->
+
+<!-- newsletter -->
+
+<!-- /newsletter -->
+
+<!-- Newsletter Modal -->
+<!-- /Newsletter Modal -->
+{%endblock%}
+

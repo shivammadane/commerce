@@ -1,0 +1,178 @@
+<!-- /navigation -->
+
+{%extends 'base.html' %}
+{%load static%}
+{%block body%}
+<!-- main wrapper -->
+<div class="main-wrapper">
+
+<!-- breadcrumb -->
+<nav class="bg-gray py-3">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home'%}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Accounts</li>
+    </ol>
+  </div>
+</nav>
+<!-- /breadcrumb -->
+
+
+<section class="user-dashboard section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="list-inline dashboard-menu text-center">
+					<li class="list-inline-item"><a class="{{class1}}" href="{% url 'dash' 'Allorder'%}">Dashboard</a></li>
+					<li class="list-inline-item"><a class="{{class2}}" href="{% url 'dash' 'Pending'%}">Orders</a></li>
+					<li class="list-inline-item"><a class="{{class3}}" href="{% url 'dash' 'Address'%}">Address</a></li>
+					<li class="list-inline-item"><a class="{{class4}}" href="{% url 'dash' 'Userdetail'%}">Profile Details</a></li>
+				</ul>
+				{% if type == 'Allorder'%}
+				<div class="dashboard-wrapper user-dashboard">
+					<div class="media">
+
+
+						<div class="media-body align-self-center">
+							<h2 class="media-heading">Welcome,<b>{{request.user.first_name}}</b></h2>
+								</div>
+
+					</div>
+					<div class="total-order mt-4">
+						<h4>Total Orders</h4>
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Order ID</th>
+										<th>Date</th>
+										<th>Items</th>
+										<th>Total Price</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+								{% for i in data%}
+									<tr>
+										<td><a href="#">{{i.order_detail.order_id}}</a></td>
+										<td>{{i.order_detail}}</td>
+										<td>{{i.quantity}}</td>
+										<td>{{i.total_amount}}</td>
+									</tr>
+								{%endfor%}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				{%endif%}
+				{% if type == 'Pending'%}
+				<div class="dashboard-wrapper user-dashboard">
+					<div class="media">
+
+					</div>
+					<div class="total-order mt-4">
+						<h4>Total Orders</h4>
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Order ID</th>
+										<th>Date</th>
+										<th>Items</th>
+										<th>Total Price</th>
+										<th>Expected Date</th>
+										<th>Status</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+								{%for i in data%}
+									<tr>
+										<td><a href="#">{{i.order_detail.order_id}}</a></td>
+										<td>{{i.order_detail.date}}</td>
+										<td>{{i.quantity}}</td>
+										<td>{{i.total_amount}}</td>
+										<td>{{i.estimated_date}}</td>
+										<td>{{i.status}}</td>
+										<td><a href="{% url 'track' i.id%}"><button class="btn btn-sm">Track order</button></a> </td>
+									</tr>
+								{%endfor%}
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				{%endif%}
+				{% if type == 'Address'%}
+				<div class="dashboard-wrapper user-dashboard">
+					<div class="media">
+
+						<div class="media-body align-self-center">
+							<h2 class="media-heading">Address</h2>
+						</div>
+					</div>
+					<div class="total-order mt-4">
+						<h4>Total Orders</h4>
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Full Name</th>
+										<th>Address</th>
+										<th>City/State</th>
+
+
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+								{% for i in new%}
+									<tr>
+
+										<td>{{i.fullname}}</td>
+										<td>H.no-{{i.house_no}}{{i.area_name}}{{i.pincode}}</td>
+										<td>{{i.state_city}}</td>
+
+									</tr>
+								{%endfor%}
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				{%endif%}
+				{% if type == 'Userdetail'%}
+				<div class="dashboard-wrapper user-dashboard">
+					<div class="dashboard-wrapper dashboard-user-profile">
+          <div class="media">
+            <div class="text-center">
+              <img class="media-object user-img" src="{{ ud.img.url}}" alt="Image">
+
+            </div>
+
+            <div class="media-body">
+              <ul class="user-profile-list">
+
+                <h2 class="media-heading"> Full Name:{{ud.usr.first_name}} {{ud.usr.last_name}}</h2>
+                <h2 class="media-heading">Country:{{ud.address}}
+                <h2 class="media-heading">Email:{{ud.usr.email}}
+                <h2 class="media-heading">Phone:{{ud.mob}}
+
+
+              </ul>
+            </div>
+          </div>
+        </div>
+				</div>
+				{%endif%}
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+{%endblock%}
