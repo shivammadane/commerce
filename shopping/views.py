@@ -186,8 +186,8 @@ def remove_from_cart(request,sid):
     return redirect('mycart')
 
 
-headers = { "X-Api-Key": "d36226f15fb5b59fbb817737f9068b10",
-            "X-Auth-Token": "7db341777fe6acb02029ed77f9aa0178"}
+headers = { "X-Api-Key": "",
+            "X-Auth-Token": ""}
 import requests
 import json
 def payment(user,amount,order_id):
@@ -195,7 +195,7 @@ def payment(user,amount,order_id):
         'purpose':'Product Payment',
         'buyer_name':user.username,
         'email':user.email,
-        'phone':+918421707636,
+        'phone':,
         'amount':amount,
         'send_email':True,
         'send_sms':True,
